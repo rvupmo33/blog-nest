@@ -5,8 +5,9 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 const usersRoutes = require("./routes/users-routes");
-
+const blogsRoutes = require("./routes/blogs-routes"); // Import blogs routes
 app.use("/api/users", usersRoutes);
+app.use("/api/blogs", blogsRoutes); // Use blogs routes for /api/blogs path
 
 // Error handling middleware
 app.use((error, req, res, next) => {
