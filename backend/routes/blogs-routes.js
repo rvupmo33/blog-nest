@@ -2,6 +2,9 @@ const express = require("express");
 const blogsControllers = require("../controllers/blogs-controller");
 const router = express.Router();
 
+const { check } = require("express-validator");
+
+
 // Route to get all blogs
 router.get("/", blogsControllers.getAllBlogs);
 
@@ -17,7 +20,7 @@ router.post(
       check("content").not().isEmpty(),
       check("user").not().isEmpty(),
     ],
-    blogsController.createBlog
+    blogsControllers.createBlog
   );
 // Route to update a blog by ID
 router.patch("/:blogId", blogsControllers.updateBlog);
