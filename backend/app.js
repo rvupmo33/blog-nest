@@ -21,7 +21,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://rubiyasultana0:<db_password>@cluster1.sysbg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
+    "mongodb+srv://rubiyasultana0:XModpunalhHyD6Na@cluster1.sysbg.mongodb.net/BlogNest?retryWrites=true&w=majority&appName=Cluster1"
   )
   .then(() => {
     app.listen(8080, () => console.log("App is running on port 8080"));
