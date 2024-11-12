@@ -1,15 +1,16 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const usersRoutes = require("./routes/users-routes");
+const blogsRoutes = require("./routes/blogs-routes");
 
 app.use(bodyParser.json());
 
-const usersRoutes = require("./routes/users-routes");
-const blogsRoutes = require("./routes/blogs-routes"); // Import blogs routes
 app.use("/api/users", usersRoutes);
-app.use("/api/blogs", blogsRoutes); // Use blogs routes for /api/blogs path
+app.use("/api/blogs", blogsRoutes);
 
-// Error handling middleware
 app.use((error, req, res, next) => {
   if (res.header.sent) {
     return next(error);
@@ -18,9 +19,15 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message } || "An unknown has occurred");
 });
 
-app.listen(3000, () => {
-  console.log("App is listening on port 3000");
-});
-
+mongoose
+  .connect(
+    "mongodb+srv://rubiyasultana0:<db_password>@cluster1.sysbg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
+  )
+  .then(() => {
+    app.listen(8080, () => console.log("App is running on port 8080"));
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 ///This is the starting point
 //Updating the code in Git process
