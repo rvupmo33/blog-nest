@@ -11,6 +11,11 @@ app.use(bodyParser.json());
 app.use("/api/users", usersRoutes);
 app.use("/api/blogs", blogsRoutes);
 
+
+app.use((req, res, next) => {
+  throw new HttpError("The requested URL was not found on this server.", 404);
+});
+
 app.use((error, req, res, next) => {
   if (res.header.sent) {
     return next(error);
@@ -29,5 +34,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-///This is the starting point
-//Updating the code in Git process
+
+//password XModpunalhHyD6Na
+  

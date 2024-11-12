@@ -9,8 +9,16 @@ router.get("/", blogsControllers.getAllBlogs);
 router.get("/:username", blogsControllers.getBlogByUser);
 
 // Route to create a new blog
-router.post("/create", blogsControllers.createBlog);
-
+//router.post("/create", blogsControllers.createBlog);
+router.post(
+    "/",
+    [
+      check("title").not().isEmpty().isLength({ min: 5 }),
+      check("content").not().isEmpty(),
+      check("user").not().isEmpty(),
+    ],
+    blogsController.createBlog
+  );
 // Route to update a blog by ID
 router.patch("/:blogId", blogsControllers.updateBlog);
 
