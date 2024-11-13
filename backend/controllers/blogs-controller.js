@@ -2,24 +2,23 @@ const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const Blog = require("../models/blog");
 
+
 // Retrieve blog post by username
 const getBlogByUser = async (req, res, next) => {
   const username = req.params.username;
 
-  let blog;
+  let blogs;
   try {
-    blog = await Blog.find({ user: username });
+    blogs = await Blog.find({ user: username });
   } catch (err) {
-    return next(
-      new HttpError("Could not find a blog for the provided user.", 500)
-    );
+    return next(new HttpError("Could not retrieve blogs for the provided user.", 500));
   }
 
-  if (!blog) {
-    return next(new HttpError("No blog found for the provided user.", 404));
+  if (!blogs || blogs.length === 0) {
+    return next(new HttpError("No blogs found for the provided user.", 404));
   }
 
-  res.json({ blog: blog.toObject({ getters: true }) });
+  res.json({ blogs: blogs.map(blog => blog.toObject({ getters: true })) });
 };
 
 // Create a new blog post
