@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const usersRoutes = require("./routes/users-routes");
 const blogsRoutes = require("./routes/blogs-routes");
 
+const HttpError = require("./models/http-error");
 app.use(bodyParser.json());
 
 app.use("/api/users", usersRoutes);

@@ -2,29 +2,6 @@ const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const Blog = require("../models/blog");
 
-/*
-const dummyBlogs = [
-  {
-    title: "The Ultimate Guide to Cooking Pasta",
-    content: "Learn how to cook perfect pasta every time, from boiling water to sauce pairings!",
-    user: "chefGordon",
-    date: new Date("2023-11-01")
-  },
-  {
-    title: "Mastering Homemade Sauces",
-    content: "A comprehensive guide on creating rich and flavorful homemade sauces.",
-    user: "chefJamie",
-    date: new Date("2023-11-05")
-  },
-  {
-    title: "Baking the Perfect Sourdough",
-    content: "Everything you need to know to bake a perfect loaf of sourdough from scratch.",
-    user: "chefMary",
-    date: new Date("2023-11-10")
-  }
-];
-*/
-
 // Retrieve blog post by username
 const getBlogByUser = async (req, res, next) => {
   const username = req.params.username;
@@ -33,7 +10,9 @@ const getBlogByUser = async (req, res, next) => {
   try {
     blog = await Blog.find({ user: username });
   } catch (err) {
-    return next(new HttpError("Could not find a blog for the provided user.", 500));
+    return next(
+      new HttpError("Could not find a blog for the provided user.", 500)
+    );
   }
 
   if (!blog) {
@@ -77,7 +56,7 @@ const getAllBlogs = async (req, res, next) => {
     return next(new HttpError("Fetching blogs failed, please try again.", 500));
   }
 
-  res.json({ blogs: blogs.map(blog => blog.toObject({ getters: true })) });
+  res.json({ blogs: blogs.map((blog) => blog.toObject({ getters: true })) });
 };
 
 // Update a blog post
@@ -111,13 +90,17 @@ const updateBlog = async (req, res, next) => {
 const deleteBlog = async (req, res, next) => {
   const blogId = req.params.blogId;
 
-  try {
-    await Blog.findByIdAndRemove(blogId);
-  } catch (err) {
-    return next(new HttpError("Deleting blog failed, please try again.", 500));
-  }
+    try {
+      const blog = await Blog.findByIdAndDelete(blogId);
 
-  res.status(200).json({ message: "Blog deleted." });
+      if (!blog) {
+        return next(new HttpError("Blog not found.", 404));
+      }
+    } catch (err) {
+      return next(new HttpError("Deleting blog failed, please try again.", 500));
+    }
+
+      res.status(200).json({ message: "Blog deleted." });
 };
 
 exports.getBlogByUser = getBlogByUser;
