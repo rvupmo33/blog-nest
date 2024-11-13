@@ -9,7 +9,7 @@ const { check } = require("express-validator");
 router.get("/", blogsControllers.getAllBlogs);
 
 // Route to get blogs by a specific user
-router.get("/:username", blogsControllers.getBlogByUser);
+router.get("/user/:username", blogsControllers.getBlogByUser);
 
 // Route to create a new blog
 //router.post("/create", blogsControllers.createBlog);
