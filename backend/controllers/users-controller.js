@@ -81,7 +81,7 @@ const createUser = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(201).json({ user: newUser.toObject({ getters: true }) });
+  res.status(201).json({ user: newUser });
 };
 
 const loginUser = (req, res, next) => {
