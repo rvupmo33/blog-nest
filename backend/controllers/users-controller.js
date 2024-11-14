@@ -46,6 +46,7 @@ const User = require("../models/user");
 //   },
 // ];
 
+//create user with validation
 const createUser = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -72,7 +73,6 @@ const createUser = async (req, res, next) => {
     return next(error);
   }
 
-//create user
   const newUser = new User({
     firstName,
     lastName,
@@ -90,23 +90,34 @@ const createUser = async (req, res, next) => {
   res.status(201).json({ user: newUser });
 };
 
-const loginUser = (req, res, next) => {
+//login user with valdiation
+const loginUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(new HttpError("Invalid inputs, please check your data.", 422));
+  }
+
   const { email, password } = req.body;
 
-  const foundUser = DUMMY_USERS.find(
-    (user) => user.email === email && user.password === password
-  );
+  let foundUser;
+  try {
+    foundUser = await User.findOne({ email: email });
+  } catch (err) {
+    const error = new HttpError("Login failed, please try again later.", 500);
+    return next(error);
+  }
 
-  if (foundUser) {
+  if (!foundUser || foundUser.password !== password) {
     const error = new HttpError(
-      "Wrong Username or Password, please enter correct username and password! Try again.",
+      "Invalid email or password, please try again.",
       401
     );
     return next(error);
   }
 
   res.status(200).json({ message: "Login successful", user: foundUser });
-};  
+};
+
 
 exports.createUser = createUser;
 exports.loginUser = loginUser;
