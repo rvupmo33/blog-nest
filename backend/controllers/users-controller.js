@@ -1,3 +1,4 @@
+const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/user");
@@ -46,6 +47,10 @@ const User = require("../models/user");
 // ];
 
 const createUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(new HttpError("Invalid inputs, please check your data.", 422));
+  }
   const { firstName, lastName, email, password } = req.body;
 
   let existingUser;
@@ -67,6 +72,7 @@ const createUser = async (req, res, next) => {
     return next(error);
   }
 
+//create user
   const newUser = new User({
     firstName,
     lastName,
@@ -100,7 +106,7 @@ const loginUser = (req, res, next) => {
   }
 
   res.status(200).json({ message: "Login successful", user: foundUser });
-};
+};  
 
 exports.createUser = createUser;
 exports.loginUser = loginUser;
