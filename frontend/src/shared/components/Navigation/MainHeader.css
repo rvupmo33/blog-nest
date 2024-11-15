@@ -1,0 +1,29 @@
+.main-header {
+  display: flex;
+  gap: 10px;
+  /* background-color: rgb(244, 244, 244); */
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+  list-style-type: none;
+  font-size: 14px;
+}
+
+a {
+  color: #000;
+}
+
+.main-navigation__title {
+  font-size: 18px;
+}
+
+.main-navigation__title div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
