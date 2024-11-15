@@ -52,7 +52,7 @@ const createUser = async (req, res, next) => {
   if (!errors.isEmpty()) {
     return next(new HttpError("Invalid inputs, please check your data.", 422));
   }
-  const { firstName, lastName, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   let existingUser;
   try {
@@ -74,8 +74,7 @@ const createUser = async (req, res, next) => {
   }
 
   const newUser = new User({
-    firstName,
-    lastName,
+    username,
     email,
     password,
   });
@@ -87,7 +86,7 @@ const createUser = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(201).json({ user: newUser });
+  res.status(201).json({ message: "Signup successful", user: newUser });
 };
 
 //login user with valdiation
@@ -117,7 +116,6 @@ const loginUser = async (req, res, next) => {
 
   res.status(200).json({ message: "Login successful", user: foundUser });
 };
-
 
 exports.createUser = createUser;
 exports.loginUser = loginUser;

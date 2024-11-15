@@ -2,23 +2,24 @@ const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const Blog = require("../models/blog");
 
-
 // Retrieve blog post by username
 const getBlogByUser = async (req, res, next) => {
   const username = req.params.username;
 
   let blogs;
   try {
-    blogs = await Blog.find({ user: username });
+    blogs = await Blog.find({ username: username });
   } catch (err) {
-    return next(new HttpError("Could not retrieve blogs for the provided user.", 500));
+    return next(
+      new HttpError("Could not retrieve blogs for the provided user.", 500)
+    );
   }
 
   if (!blogs || blogs.length === 0) {
     return next(new HttpError("No blogs found for the provided user.", 404));
   }
 
-  res.json({ blogs: blogs.map(blog => blog.toObject({ getters: true })) });
+  res.json({ blogs: blogs.map((blog) => blog.toObject({ getters: true })) });
 };
 
 // Create a new blog post
@@ -28,12 +29,12 @@ const createBlog = async (req, res, next) => {
     return next(new HttpError("Invalid input, please check your data.", 422));
   }
 
-  const { title, content, user } = req.body;
+  const { title, content, username } = req.body;
 
   const createdBlog = new Blog({
     title,
     content,
-    user,
+    username,
     date: new Date(),
   });
 
@@ -89,17 +90,17 @@ const updateBlog = async (req, res, next) => {
 const deleteBlog = async (req, res, next) => {
   const blogId = req.params.blogId;
 
-    try {
-      const blog = await Blog.findByIdAndDelete(blogId);
+  try {
+    const blog = await Blog.findByIdAndDelete(blogId);
 
-      if (!blog) {
-        return next(new HttpError("Blog not found.", 404));
-      }
-    } catch (err) {
-      return next(new HttpError("Deleting blog failed, please try again.", 500));
+    if (!blog) {
+      return next(new HttpError("Blog not found.", 404));
     }
+  } catch (err) {
+    return next(new HttpError("Deleting blog failed, please try again.", 500));
+  }
 
-      res.status(200).json({ message: "Blog deleted." });
+  res.status(200).json({ message: "Blog deleted." });
 };
 
 exports.getBlogByUser = getBlogByUser;
