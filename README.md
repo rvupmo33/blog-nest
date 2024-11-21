@@ -9,5 +9,5 @@ A Creative Space for Sharing Posts
 ### Project Description
 
 <p>
-  Test 123
+  A user-driven blogging platform where users can create, share, and manage blog posts.
 </p>
