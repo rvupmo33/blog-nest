@@ -16,6 +16,12 @@ const NavLinks = (props) => {
       <li>
         <NavLink to="/blogs/update/1">Update Blog</NavLink>
       </li>
+      
+      <li>
+        <NavLink to="/profile">
+          Profile
+        </NavLink>
+      </li>
       <li>
         <NavLink to="/">Signup</NavLink>
       </li>
