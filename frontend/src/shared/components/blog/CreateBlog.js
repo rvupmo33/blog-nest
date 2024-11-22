@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import "./CreateBlog.css";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
@@ -10,11 +11,25 @@ const CreateBlog = () => {
 
   const handleTitleChange = (event) => setTitle(event.target.value);
   const handleContentChange = (event) => setContent(event.target.value);
-  const handleImageChange = (event) => setImage(event.target.files);
+  const handleImageChange = (event) => setImage(event.target.files[0]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
+    try {
+      // Mock API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      console.log("Blog Created:", { title, content, image });
+
+      // Navigate to home or blogs page after creation
+      history.push("/");
+    } catch (error) {
+      console.error("Error creating blog:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -44,11 +59,7 @@ const CreateBlog = () => {
 
         <div>
           <label>Image (Optional)</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
         </div>
 
         <div>
