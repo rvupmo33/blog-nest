@@ -1,0 +1,19 @@
+.blog-item__content {
+  margin-bottom: 10px;
+}
+
+.blog-item__image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.blog-item__info {
+  color: rgb(255, 255, 255);
+}
+
+.blog-item__info h2 {
+  font-weight: 700;
+  font-size: 20px;
+  padding: 10px 0;
+}

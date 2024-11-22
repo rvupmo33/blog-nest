@@ -1,11 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./NavLinks.css";
 
-const NavLinks = (props) => {
+const NavLinks = () => {
+  let user = true;
   return (
     <ul className="nav-links">
       <li>
-        <NavLink to="/" exact>
+        <NavLink to="/" exact activeClassName="active">
           Home
         </NavLink>
       </li>
@@ -15,15 +17,40 @@ const NavLinks = (props) => {
       <li>
         <NavLink to="/blogs/update/1">Update Blog</NavLink>
       </li>
-      <li>
-        <NavLink to="/profile">Profile</NavLink>
-      </li>
-      <li>
-        <NavLink to="/">Signup</NavLink>
-      </li>
-      <li>
-        <NavLink to="/">Sign In</NavLink>
-      </li>
+
+      {/* Conditionally render Profile and Logout if user is signed in */}
+      {user ? (
+        <>
+          <li>
+            <NavLink to="/blogs/update/1" activeClassName="active">
+              Update Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/profile" activeClassName="active">
+              Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/logout" activeClassName="active">
+              Logout
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink to="/signup" activeClassName="active">
+              Signup
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/signin" activeClassName="active">
+              Sign In
+            </NavLink>
+          </li>
+        </>
+      )}
     </ul>
   );
 };

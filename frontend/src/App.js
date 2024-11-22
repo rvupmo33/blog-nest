@@ -6,9 +6,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import UpdateBlog from "./shared/components/blog/UpdateBlog";
-import CreateBlog from "./shared/components/blog/CreateBlog"; // Adjusted import path
+import UpdateBlog from "./shared/components/blog/UpdateBlog"; // import UpdateBlog
 import Profile from "./shared/components/user/Profile";
+import Blogs from "./blog/pages/Blogs";
 
 function App() {
   return (
@@ -17,12 +17,15 @@ function App() {
       <main>
         <Switch>
           <Route path="/" exact>
-            <h1>Welcome to BlogNest</h1>
+            <Blogs />
           </Route>
-          <Route path="/create-blog" exact>
-            <CreateBlog />
-          </Route>
-          <Route path="/blogs/update/:blogId" exact component={UpdateBlog}></Route>
+
+          <Route path="/" exact></Route>
+          <Route
+            path="/blogs/update/:blogId"
+            exact
+            component={UpdateBlog}
+          ></Route>
           <Route path="/profile" exact>
             <Profile />
           </Route>
