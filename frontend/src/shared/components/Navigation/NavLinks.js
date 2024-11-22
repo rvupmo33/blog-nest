@@ -25,6 +25,11 @@ const NavLinks = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/blogs/delete/1" activeClassName="active">
+              Delete Blog
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/profile" activeClassName="active">
               Profile
             </NavLink>
