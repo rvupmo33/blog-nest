@@ -35,4 +35,18 @@
     .main-navigation__header-nav {
       display: block;
     }
+
+
+    .main-navigation__logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem; /* Space between image and text */
+    }
+    
+    .main-navigation__logo {
+      width: 40px; /* Adjust width as needed */
+      height: 40px; /* Adjust height as needed */
+      object-fit: contain; /* Ensure the image maintains its aspect ratio */
+    }
+    
   } 

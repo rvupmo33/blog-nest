@@ -37,14 +37,23 @@ const MainNavigation = (props) => {
         </button>
 
         {/* <PanelRightClose /> */}
+
         <h1 className="main-navigation__title">
+          <Link to="/">
+          <div className="main-navigation__logo-container">
+            <img src="/code_maverick_logo 1.png" alt="Logo" className="main-navigation__logo" />
+                BlogNest
+          </div>
+        </Link>
+        </h1>
+        {/*<h1 className="main-navigation__title">
           <Link to="/">
             <div>
               <Image />
               BlogNest
             </div>
           </Link>
-        </h1>
+        </h1>*/}
         
         <nav className="main-navigation__header-nav">
           <NavLinks />
