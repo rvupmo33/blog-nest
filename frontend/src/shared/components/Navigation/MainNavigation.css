@@ -1,52 +1,78 @@
+/* MainNavigation.css */
+
 .main-navigation__menu-btn {
-  width: 3rem;
-  height: 3rem;
   background: transparent;
   border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.main-navigation__title a {
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+.main-navigation__title div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.main-navigation__drawer-nav {
+  height: 100%;
+  padding: 10px;
+}
+
+@media (min-width: 768px) {
+  .main-navigation__menu-btn {
+    color: rgb(0, 0, 0);
+    display: none;
+  }
+
+  .main-navigation__header-nav {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-navigation__menu-btn {
+    display: block;
+    position: absolute;
+    left: 10px;
+  }
+
+  .main-navigation__title {
+    text-align: left;
+    padding-left: 30px;
+  }
+
+  .main-navigation__header-nav a {
+    display: none;
+  }
+}
+
+.main-navigation__title {
+  font-size: 18px;
+}
+
+.drawer-nav-links {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  margin-right: 2rem;
-  cursor: pointer;
+  gap: 5px;
+  list-style: none;
+  text-align: center;
 }
-.main-navigation__menu-btn span {
-  display: block;
-  width: 3rem;
-  height: 2.5px;
-  background: white;
+
+.drawer-nav-links li {
+  padding: 5px 0;
 }
-  .main-navigation__title {
-    color: white;
-  }
-  .main-navigation__title a {
-    text-decoration: none;
-    color: white;
-  }
-  .main-navigation__header-nav {
-    display: none;
-  } 
-  .main-navigation__drawer-nav {
-    height: 100%;
-  }
-  @media (min-width: 768px) {
-    .main-navigation__menu-btn {
-      display: none;
-    }
-    .main-navigation__header-nav {
-      display: block;
-    }
 
+.drawer-nav-links a {
+  color: black;
+}
 
-    .main-navigation__logo-container {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem; /* Space between image and text */
-    }
-    
-    .main-navigation__logo {
-      width: 40px; /* Adjust width as needed */
-      height: 40px; /* Adjust height as needed */
-      object-fit: contain; /* Ensure the image maintains its aspect ratio */
-    }
-    
-  } 
+.drawer-nav-links .active {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 5px 20px;
+}
