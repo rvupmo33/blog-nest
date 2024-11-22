@@ -1,16 +1,36 @@
-import React from "react";
-import MainHeader from "./MainHeader";
-import NavLinks from "./NavLinks";
+import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Image } from "lucide-react";
-import "./MainNavigation.css";
 
-const MainNavigation = () => {
+import MainHeader from "./MainHeader";
+import NavLinks from "./NavLinks";
+import "./MainNavigation.css";
+import SideDrawer from "./SideDrawer";
+import Backdrop from "../UIElements/Backdrop";
+
+const MainNavigation = (props) => {
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const openDrawer = () => {
+    setDrawerIsOpen(true);
+  };
+  const closeDrawer = () => {
+    setDrawerIsOpen(false);
+  };
   return (
-    <div>
+    <React.Fragment>
+      {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
+      {drawerIsOpen && (
+        <SideDrawer>
+          <nav className="main-navigation__drawer-nav">
+            <NavLinks />
+          </nav>
+        </SideDrawer>
+      )}
+
+      <div>
       <MainHeader>
         {/* Hamburger button that appears only on mobile */}
-        <button className="main-navigation__menu-btn">
+        <button className="main-navigation__menu-btn"  onClick={openDrawer}>
           <span />
           <span />
           <span />
@@ -31,6 +51,8 @@ const MainNavigation = () => {
         </nav>
       </MainHeader>
     </div>
+    </React.Fragment>
+    
   );
 };
 
