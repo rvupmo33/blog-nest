@@ -19,7 +19,7 @@ function App() {
           <Route path="/" exact></Route>
           <Route path="/" exact></Route>
           {/* Dynamic route for updating any blog */}
-          <Route path="/blogs/update/:blogId" exact component={UpdateBlog} />
+          <Route path="/blogs/update/:blogId" exact component={UpdateBlog}></Route> 
           <Redirect to="/" />
         </Switch>
       </main>
