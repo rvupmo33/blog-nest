@@ -12,10 +12,9 @@ const NavLinks = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/new-blog" activeClassName="active">
-          New Blog
-        </NavLink>
+        <NavLink to="/create-blog">Create New Blog</NavLink>
       </li>
+     
 
       {/* Conditionally render Profile and Logout if user is signed in */}
       {user ? (

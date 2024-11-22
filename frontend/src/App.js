@@ -9,6 +9,8 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UpdateBlog from "./shared/components/blog/UpdateBlog";
 import DeleteBlog from "./shared/components/blog/DeleteBlog";
 import Profile from "./shared/components/user/Profile";
+import Blogs from "./blog/pages/Blogs";
+import CreateBlog from "./shared/components/blog/CreateBlog";
 
 function App() {
   return (
@@ -30,6 +32,12 @@ function App() {
             exact
             component={DeleteBlog}
           ></Route>
+          <Route path="/" exact>
+            <Blogs />
+          </Route>
+          <Route path="/create-blog" exact>
+            <CreateBlog />
+          </Route>
           <Route path="/profile" exact>
             <Profile />
           </Route>
