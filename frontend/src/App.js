@@ -6,7 +6,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import UpdateBlog from "./shared/components/blog/UpdateBlog"; // import UpdateBlog
 import Profile from "./shared/components/user/Profile";
 import Blogs from "./blog/pages/Blogs";
 import CreateBlog from "./shared/components/blog/CreateBlog";
@@ -23,12 +22,6 @@ function App() {
           <Route path="/create-blog" exact>
             <CreateBlog />
           </Route>
-          <Route path="/" exact></Route>
-          <Route
-            path="/blogs/update/:blogId"
-            exact
-            component={UpdateBlog}
-          ></Route>
           <Route path="/profile" exact>
             <Profile />
           </Route>
