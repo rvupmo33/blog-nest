@@ -1,7 +1,6 @@
 import React from "react";
 import BlogItem from "./BlogItem";
 import "./BlogList.css";
-
 const BlogsList = (props) => {
   if (props.items.length === 0) {
     return (
@@ -10,7 +9,6 @@ const BlogsList = (props) => {
       </div>
     );
   }
-
   return (
     <div className="content-container">
       <ul className="blog-list">
@@ -28,5 +26,4 @@ const BlogsList = (props) => {
     </div>
   );
 };
-
 export default BlogsList;

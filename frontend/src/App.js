@@ -18,10 +18,11 @@ function App() {
       <MainNavigation />
       <main>
         <Switch>
+          <Route path="/" exact>
+            <Blogs />
+          </Route>
           <Route path="/" exact></Route>
           <Route path="/" exact></Route>
-          <Route path="/" exact></Route>
-          {/* Dynamic route for updating any blog */}
           <Route
             path="/blogs/update/:blogId"
             exact
