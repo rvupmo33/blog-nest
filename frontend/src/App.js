@@ -9,6 +9,7 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UpdateBlog from "./shared/components/blog/UpdateBlog"; // import UpdateBlog
 import Profile from "./shared/components/user/Profile";
 import Blogs from "./blog/pages/Blogs";
+import CreateBlog from "./shared/components/blog/CreateBlog";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
           <Route path="/" exact>
             <Blogs />
           </Route>
-
+          <Route path="/create-blog" exact>
+            <CreateBlog />
+          </Route>
           <Route path="/" exact></Route>
           <Route
             path="/blogs/update/:blogId"
