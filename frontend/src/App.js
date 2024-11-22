@@ -6,8 +6,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import UpdateBlog from "./shared/components/blog/UpdateBlog";  // import UpdateBlog
+import UpdateBlog from "./shared/components/blog/UpdateBlog"; // import UpdateBlog
 import Profile from "./shared/components/user/Profile";
+import Blogs from "./blog/pages/Blogs";
 
 function App() {
   return (
@@ -15,13 +16,18 @@ function App() {
       <MainNavigation />
       <main>
         <Switch>
+          <Route path="/" exact>
+            <Blogs />
+          </Route>
+
           <Route path="/" exact></Route>
-          <Route path="/" exact></Route>
-          <Route path="/" exact></Route>
-          {/* Dynamic route for updating any blog */}
-          <Route path="/blogs/update/:blogId" exact component={UpdateBlog}></Route> 
+          <Route
+            path="/blogs/update/:blogId"
+            exact
+            component={UpdateBlog}
+          ></Route>
           <Route path="/profile" exact>
-            <Profile/>
+            <Profile />
           </Route>
           <Redirect to="/" />
         </Switch>

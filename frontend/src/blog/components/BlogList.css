@@ -1,0 +1,29 @@
+/* Container for the blog list */
+.content-container {
+  padding: 0 20px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 1150px) {
+  .blog-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .blog-list {
+    grid-template-columns: 1fr;
+  }
+}
