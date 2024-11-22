@@ -12,6 +12,10 @@ const NavLinks = (props) => {
       <li>
         <NavLink to="/">New Blog</NavLink>
       </li>
+      {/* Only one "Update Blog" link that takes to dynamic route */}
+      <li>
+        <NavLink to="/blogs/update">Update Blog</NavLink>
+      </li>
       <li>
         <NavLink to="/">Signup</NavLink>
       </li>

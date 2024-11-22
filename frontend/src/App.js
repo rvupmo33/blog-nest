@@ -6,6 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
+import UpdateBlog from "./shared/components/blog/UpdateBlog";  // import UpdateBlog
+
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/" exact></Route>
           <Route path="/" exact></Route>
           <Route path="/" exact></Route>
+          {/* Dynamic route for updating any blog */}
+          <Route path="/blogs/update/:blogId" exact component={UpdateBlog} />
           <Redirect to="/" />
         </Switch>
       </main>
