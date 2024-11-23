@@ -26,7 +26,7 @@ const DeleteBlog = () => {
         <div>
           <label>Title</label>
         </div>
-        
+
         <p>This action cannot be undone.</p>
         <div className="delete-blog-buttons">
           <button type="submit">Cancel</button>
