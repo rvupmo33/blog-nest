@@ -6,11 +6,11 @@ import {
   Redirect,
 } from "react-router-dom";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import UpdateBlog from "./shared/components/blog/UpdateBlog";
-import DeleteBlog from "./shared/components/blog/DeleteBlog";
+import UpdateBlog from "./blogs/pages/UpdateBlog";
+import DeleteBlog from "./blogs/pages/DeleteBlog";
 import Profile from "./shared/components/user/Profile";
-import Blogs from "./blog/pages/Blogs";
-import CreateBlog from "./shared/components/blog/CreateBlog";
+import Blogs from "./blogs/pages/Blogs";
+import CreateBlog from "./blogs/pages/CreateBlog";
 
 function App() {
   return (
