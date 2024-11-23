@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./CreateBlog.css";
 
-//webpage for creat new post
-const CreateBlog = () => {
+const CreateBlog = ({ onAddBlog }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
@@ -19,10 +18,18 @@ const CreateBlog = () => {
     setLoading(true);
 
     try {
-      // Mock API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Create a new blog object
+      const newBlog = {
+        id: Math.random().toString(), // Generate a unique id
+        username: "currentuser", // Or use logged-in user's username
+        title,
+        content,
+        image: image ? URL.createObjectURL(image) : "", // Optional: Handle image URL
+        date: new Date().toISOString(),
+      };
 
-      console.log("Blog Created:", { title, content, image });
+      // Pass the new blog to the parent (App.js) to update the state
+      onAddBlog(newBlog);
 
       // Navigate to home or blogs page after creation
       history.push("/");
