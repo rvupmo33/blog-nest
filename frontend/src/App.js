@@ -17,7 +17,7 @@ const App = () => {
   const [blogs, setBlogs] = useState([
     {
       id: "1",
-      username: "johndoe",
+      username: "devwizard",
       title: "The Rise of AI",
       content:
         "Artificial Intelligence (AI) is rapidly transforming industries worldwide, from healthcare to finance. Its potential to revolutionize traditional processes is vast, allowing businesses to automate tasks, make smarter decisions, and enhance customer experiences. As AI continues to advance, we are seeing significant improvements in machine learning algorithms and natural language processing, enabling machines to interpret and respond to human input with unprecedented accuracy. The future of AI looks incredibly promising, offering new opportunities for innovation across various sectors, while also raising important ethical questions about its role in society and the workforce.",
@@ -72,6 +72,14 @@ const App = () => {
     setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
   };
 
+  const updateBlog = (updatedBlog) => {
+    setBlogs((prevBlogs) =>
+      prevBlogs.map((blog) =>
+        blog.id === updatedBlog.id ? { ...blog, ...updatedBlog } : blog
+      )
+    );
+  };
+
   return (
     <Router>
       <MainNavigation />
@@ -83,10 +91,20 @@ const App = () => {
           <Route path="/create-blog">
             <CreateBlog onAddBlog={addBlog} />
           </Route>
-          <Route path="/blogs/update/:blogId" exact component={UpdateBlog}></Route>
-          <Route path="/blogs/delete/:blogId" exact component={DeleteBlog}></Route>
+          <Route
+            path="/blogs/update/:blogId"
+            exact
+            render={(props) => (
+              <UpdateBlog {...props} blogs={blogs} onUpdateBlog={updateBlog} />
+            )}
+          />
+          <Route
+            path="/blogs/delete/:blogId"
+            exact
+            component={DeleteBlog}
+          ></Route>
           <Route path="/profile" exact>
-            <Profile />
+            <Profile blogs={blogs} />
           </Route>
           <Redirect to="/" />
         </Switch>

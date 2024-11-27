@@ -17,6 +17,12 @@ const ModalOverlay = (props) => {
         </div>
         <footer className="modal__footer">
           <button onClick={props.onCancel}>Close</button>
+          {props.canEdit && (
+            <>
+              <button onClick={props.onUpdate}>Update</button>
+              <button onClick={props.onDelete}>Delete</button>
+            </>
+          )}
         </footer>
       </form>
     </div>
