@@ -11,58 +11,27 @@ import Backdrop from "../UIElements/Backdrop";
 const MainNavigation = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
-  const openDrawer = () => {
+  const openDrawerHandler = () => {
     setDrawerIsOpen(true);
   };
 
-  const closeDrawer = () => {
+  const closeDrawerHandler = () => {
     setDrawerIsOpen(false);
   };
 
   return (
     <React.Fragment>
-      {drawerIsOpen && <Backdrop onClick={closeDrawer} />}
-      {drawerIsOpen && (
-        <SideDrawer>
-          <nav className="main-navigation__drawer-nav">
-            <ul className="drawer-nav-links">
-              <li>
-                <NavLink to="/" exact activeClassName="active">
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/new-blog" activeClassName="active">
-                  New Blog
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/blogs/update/1" activeClassName="active">
-                  Update Blog
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/profile" activeClassName="active">
-                  Profile
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/signup" activeClassName="active">
-                  Signup
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/signin" activeClassName="active">
-                  Sign In
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-        </SideDrawer>
-      )}
+      {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}/>}
+      
+      <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>
+        <nav className="main-navigation__drawer-nav">
+          <NavLinks />
+        </nav>
+      </SideDrawer>
+      
 
       <MainHeader>
-        <button className="main-navigation__menu-btn" onClick={openDrawer}>
+        <button className="main-navigation__menu-btn" onClick={openDrawerHandler}>
           <Menu size={30} />
         </button>
 
