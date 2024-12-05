@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UpdateBlog from "./blogs/pages/UpdateBlog";
-import DeleteBlog from "./blogs/pages/DeleteBlog";
 import Profile from "./shared/components/user/Profile";
 import Blogs from "./blogs/pages/Blogs";
 import CreateBlog from "./blogs/pages/CreateBlog";
@@ -98,11 +97,11 @@ const App = () => {
               <UpdateBlog {...props} blogs={blogs} onUpdateBlog={updateBlog} />
             )}
           />
-          <Route
+          {/* <Route
             path="/blogs/delete/:blogId"
             exact
             component={DeleteBlog}
-          ></Route>
+          ></Route> */}
           <Route path="/profile" exact>
             <Profile blogs={blogs} />
           </Route>

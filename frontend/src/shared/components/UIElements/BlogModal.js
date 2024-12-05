@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
 import Backdrop from "./Backdrop";
+import Button from "../../../shared/components/FormElements/Button";
 import "./blogModal.css";
 
 const ModalOverlay = (props) => {
@@ -19,8 +20,9 @@ const ModalOverlay = (props) => {
           <button onClick={props.onCancel}>Close</button>
           {props.canEdit && (
             <>
-              <button onClick={props.onUpdate}>Update</button>
-              <button onClick={props.onDelete}>Delete</button>
+              <button onClick={props.onUpdate}>Edit</button>
+              <Button danger>Delete</Button>
+              
             </>
           )}
         </footer>
