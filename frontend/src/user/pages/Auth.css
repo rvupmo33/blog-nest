@@ -1,0 +1,14 @@
+.container {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
+  padding: 20px;
+}
+
+.authentication {
+  margin: 0 auto;
+  color: white;
+}

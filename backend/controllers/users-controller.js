@@ -3,48 +3,18 @@ const HttpError = require("../models/http-error");
 const { v4: uuidv4 } = require("uuid");
 const User = require("../models/user");
 
-// let DUMMY_USERS = [
-//   {
-//     id: 1,
-//     firstName: "John",
-//     lastName: "Doe",
-//     email: "john.doe@example.com",
-//     country: "USA",
-//     password: "password123",
-//   },
-//   {
-//     id: 2,
-//     firstName: "Jane",
-//     lastName: "Smith",
-//     email: "jane.smith@example.com",
-//     country: "Canada",
-//     password: "password456",
-//   },
-//   {
-//     id: 3,
-//     firstName: "Emily",
-//     lastName: "Johnson",
-//     email: "emily.johnson@example.com",
-//     country: "UK",
-//     password: "password789",
-//   },
-//   {
-//     id: 4,
-//     firstName: "Michael",
-//     lastName: "Brown",
-//     email: "michael.brown@example.com",
-//     country: "Australia",
-//     password: "password101",
-//   },
-//   {
-//     id: 5,
-//     firstName: "Sarah",
-//     lastName: "Davis",
-//     email: "sarah.davis@example.com",
-//     country: "New Zealand",
-//     password: "password102",
-//   },
-// ];
+const getUsers = async (req, res, next) => {
+  let users;
+  try {
+    users = await User.find({}, "-password");
+  } catch (err) {
+    return next(
+      new HttpError("Fetching users failed, Please try again later.", 500)
+    );
+  }
+
+  res.json({ users: users.map((user) => user.toObject({ getters: true })) });
+};
 
 //create user with validation
 const createUser = async (req, res, next) => {
@@ -119,3 +89,4 @@ const loginUser = async (req, res, next) => {
 
 exports.createUser = createUser;
 exports.loginUser = loginUser;
+exports.getUsers = getUsers;

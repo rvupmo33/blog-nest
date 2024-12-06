@@ -16,6 +16,11 @@
   padding: 0;
 }
 
+#message {
+  margin-top: 50px;
+  color: white;
+}
+
 @media (max-width: 1150px) {
   .blog-list {
     grid-template-columns: repeat(2, 1fr);

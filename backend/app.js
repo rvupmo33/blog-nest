@@ -9,9 +9,18 @@ const blogsRoutes = require("./routes/blogs-routes");
 const HttpError = require("./models/http-error");
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+  next();
+});
+
 app.use("/api/users", usersRoutes);
 app.use("/api/blogs", blogsRoutes);
-
 
 app.use((req, res, next) => {
   throw new HttpError("The requested URL was not found on this server.", 404);
@@ -37,4 +46,3 @@ mongoose
   });
 
 //password XModpunalhHyD6Na
-  

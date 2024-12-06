@@ -5,7 +5,7 @@ const BlogsList = (props) => {
   if (props.items.length === 0) {
     return (
       <div className="center">
-        <h2>No Blogs Found...</h2>
+        <h3 id="message">No Blogs Found...</h3>
       </div>
     );
   }
