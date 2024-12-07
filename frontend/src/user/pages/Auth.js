@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-
 import "./Auth.css";
 import Card from "../../shared/components/UIElements/Card";
 import Input from "../../shared/components/FormElements/Input";
@@ -17,7 +16,6 @@ import { AuthContext } from "../../shared/context/auth-context";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
-
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -31,6 +29,10 @@ const Auth = () => {
         value: "",
         isValid: false,
       },
+      username: {
+        value: "",
+        isValid: false,
+      },
     },
     false
   );
@@ -40,7 +42,7 @@ const Auth = () => {
       setFormData(
         {
           ...formState.inputs,
-          name: undefined,
+          username: undefined,
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -48,7 +50,7 @@ const Auth = () => {
       setFormData(
         {
           ...formState.inputs,
-          name: {
+          username: {
             value: "",
             isValid: false,
           },
@@ -83,7 +85,7 @@ const Auth = () => {
           "http://localhost:8080/api/users/signup",
           "POST",
           JSON.stringify({
-            name: formState.inputs.name.value,
+            username: formState.inputs.username.value,
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
           }),
@@ -107,11 +109,11 @@ const Auth = () => {
           {!isLoginMode && (
             <Input
               element="input"
-              id="name"
+              id="username"
               type="text"
-              label="Your Name"
+              label="Your Username"
               validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a name."
+              errorText="Please enter a username."
               onInput={inputHandler}
             />
           )}
