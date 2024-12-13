@@ -2,6 +2,12 @@ import React from "react";
 import BlogItem from "./BlogItem";
 import "./BlogList.css";
 const BlogsList = (props) => {
+
+  const deleteBlogHandler = (blogId) => {
+    // Call API or perform logic to delete the blog with blogId
+    props.onDelete(blogId);
+  };
+
   if (props.items.length === 0) {
     return (
       <div className="center">
@@ -20,6 +26,7 @@ const BlogsList = (props) => {
             content={blog.content}
             image={blog.image}
             username={blog.username}
+            onDelete={deleteBlogHandler}
           />
         ))}
       </ul>

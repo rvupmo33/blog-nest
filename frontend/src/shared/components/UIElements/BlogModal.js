@@ -21,7 +21,9 @@ const ModalOverlay = (props) => {
           {props.canEdit && (
             <>
               <button onClick={props.onUpdate}>Edit</button>
-              <Button danger>Delete</Button>
+              <Button danger onClick={props.onDelete}>
+                Delete
+              </Button>
               
             </>
           )}
